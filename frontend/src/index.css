@@ -1,0 +1,749 @@
+/* CSS Variables & Theme Setup */
+:root {
+  --forest-green: #22412c;
+  --lime-green: #a3d900;
+  --bright-lime: #b4f500;
+  --dark-lime: #7aa300;
+  --light-olive: #cbd6b5;
+  --bg-dark: #122117;
+  --text-white: #ffffff;
+  --font-brand: 'Gochi Hand', cursive;
+  --font-nav: 'Jua', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  font-family: var(--font-body);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar for organic theme */
+::-webkit-scrollbar {
+  width: 1px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--forest-green);
+  border-radius: 5px;
+  border: 2px solid var(--bg-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--lime-green);
+}
+
+/* Parallax Background */
+.parallax-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140vh; /* Extra height to accommodate scroll translation */
+  background-image: url('/assets/river_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -10;
+  will-change: transform;
+}
+
+/* Navigation Header */
+.header-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4rem;
+  z-index: 100;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.header-nav.scrolled {
+  background-color: rgba(18, 33, 23, 0);
+  backdrop-filter: blur(0px);
+  border-bottom: 0px solid rgba(163, 217, 0, 0.1);
+  height: 80px;
+}
+
+/* Logo container (initially hidden, fades in on scroll) */
+.logo-container {
+  position: relative;
+  left: 0;
+  width: 400px;
+  height: 200px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  color : var(--bright-lime);
+}
+
+.logo-symbol-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  position: absolute;
+  left: 0;
+}
+
+/* Dynamic State of Sticky Header Logo */
+.header-nav.scrolled .logo-container {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Header Strip at the top of the page */
+.header-strip-container {
+  position: absolute;
+  top: -180px; /* sits below the nav links */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 95;
+  pointer-events: none;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+}
+
+.header-strip-container.scrolled-away {
+  transform: translateY(-40px);
+  opacity: 0;
+}
+
+.header-strip-img {
+  width: 100%;
+  max-width: 100vw;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  font-family: var(--font-nav);
+  font-size: 1.5rem;
+  color : var(--bright-lime);
+  text-decoration: none;
+  padding: 0.75rem 1.25rem;
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+  transition: color 0.3s ease;
+  letter-spacing: 0.05em;
+}
+
+/* Hover and Active blob styling */
+.nav-blob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--lime-green);
+  z-index: 1;
+  /* Organic amorphous shape */
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  opacity: 0;
+  transform: scale(0.8) rotate(-5deg);
+  transition: opacity 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              border-radius 0.4s ease;
+  pointer-events: none;
+}
+
+/* Animate the blob slightly when active */
+.nav-link.active {
+  color: var(--forest-green);
+}
+
+.nav-link.active .nav-blob {
+  opacity: 1;
+  transform: scale(1.1) rotate(2deg);
+  border-radius: 30% 70% 50% 50% / 50% 30% 70% 50%;
+}
+
+.nav-item:hover .nav-link:not(.active) {
+  color: var(--forest-green);
+}
+
+.nav-item:hover .nav-blob {
+  opacity: 0.95;
+  transform: scale(1.05) rotate(-3deg);
+  border-radius: 60% 40% 30% 70% / 50% 50% 50% 50%;
+}
+
+/* Layout Sections */
+.section {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 2rem 2rem 2rem;
+}
+
+/* Hero Section (Full Width) */
+.hero-section {
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-collage {
+  width: 100%;
+  max-width: 100%;
+  height: 90vh;
+  object-fit: cover;
+  display: block;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
+  animation: floatHero 8s ease-in-out infinite;
+}
+
+@keyframes floatHero {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* About Section */
+.about-section {
+  background-color: rgba(18, 33, 23, 0.2); /* Very soft overlay */
+}
+
+.about-placeholder {
+  max-width: 800px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 2px solid var(--glass-border);
+  padding: 3.5rem;
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  transform: scale(0.95);
+  animation: pulseBox 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseBox {
+  from {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(163, 217, 0, 0.2);
+  }
+  to {
+    box-shadow: 0 25px 50px rgba(163, 217, 0, 0.1);
+    border-color: rgba(163, 217, 0, 0.4);
+  }
+}
+
+.about-placeholder h2 {
+  font-family: var(--font-nav);
+  font-size: 3rem;
+  color: var(--lime-green);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+.about-placeholder p {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--light-olive);
+}
+
+/* Try Section */
+.try-container {
+  width: 90%;
+  max-width: 1000px;
+  background-color: var(--forest-green);
+  border-radius: 50px;
+  height: 400px; /* Large forest green container */
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative grid pattern in container */
+.try-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  background-image: radial-gradient(var(--lime-green) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+.try-output-text {
+  font-family: var(--font-brand);
+  font-size: 5rem;
+  color: var(--lime-green);
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  padding: 2rem;
+  filter: url(#organic-wobble); /* Apply dynamic wiggle to text output! */
+}
+
+.try-controls {
+  width: 90%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.try-input-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.try-label {
+  font-family: var(--font-nav);
+  font-size: 1.75rem;
+  color: var(--text-white);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.try-input {
+  background-color: var(--forest-green);
+  border: 3px solid transparent;
+  border-radius: 30px;
+  height: 60px;
+  padding: 0 1.5rem;
+  font-family: var(--font-nav);
+  font-size: 1.5rem;
+  color: var(--lime-green);
+  width: 320px;
+  outline: none;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.try-input:focus {
+  border-color: var(--lime-green);
+  box-shadow: 0 0 15px rgba(163, 217, 0, 0.4), inset 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.try-buttons {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.circle-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--forest-green);
+  border: 3px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lime-green);
+  font-size: 1.5rem;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.circle-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  background-color: var(--lime-green);
+  color: var(--forest-green);
+  box-shadow: 0 10px 20px rgba(163, 217, 0, 0.3);
+}
+
+.circle-btn:active {
+  transform: translateY(-1px) scale(0.95);
+}
+
+/* Glyph Section */
+.glyph-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  width: 90%;
+  max-width: 1200px;
+  align-items: center;
+}
+
+/* Glyph Canvas / Vector Display Area */
+.glyph-display-area {
+  position: relative;
+  background: rgba(34, 65, 44, 0.2);
+  border: 3px dashed rgba(163, 217, 0, 0.3);
+  border-radius: 40px;
+  aspect-ratio: 1.1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+/* Three dashed guide lines */
+.glyph-guide-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  pointer-events: none;
+  padding: 10% 0;
+}
+
+.guide-line {
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.15);
+  width: 100%;
+}
+
+.glyph-svg-canvas {
+  width: 80%;
+  height: 80%;
+  z-index: 5;
+}
+
+.glyph-river-path {
+  fill: none;
+  stroke: var(--lime-green);
+  stroke-width: 14;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: url(#organic-wobble); /* Apply the organic wiggle distortion filter */
+  transition: d 0.5s ease-in-out;
+}
+
+/* Hex keyboard styles */
+.glyph-keyboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.hex-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -14px; /* Negative margin pulls hexagons up to interlock */
+}
+
+/* Stagger alternate rows */
+.hex-row.staggered {
+  transform: translateX(43px); /* Shift exactly by half the hex width + gap */
+}
+
+.hex-key {
+  position: relative;
+  width: 80px;
+  height: 88px;
+  background-color: var(--lime-green);
+  /* Perfect pointy top hexagon clip path */
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-nav);
+  font-size: 1.6rem;
+  color: var(--forest-green);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              background-color 0.2s ease,
+              color 0.2s ease;
+  margin: 0 3px;
+  user-select: none;
+}
+
+.hex-key:hover {
+  transform: scale(1.15);
+  background-color: var(--bright-lime);
+  z-index: 20;
+}
+
+.hex-key.active {
+  background-color: var(--forest-green);
+  color: var(--lime-green);
+  transform: scale(0.95);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.hex-key-label {
+  pointer-events: none;
+}
+
+/* Glyph Bottom input bar */
+.glyph-input-wrapper {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.glyph-input-bar {
+  background-color: var(--forest-green);
+  border: 3px solid transparent;
+  border-radius: 30px;
+  height: 60px;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 2rem;
+  font-family: var(--font-nav);
+  font-size: 1.6rem;
+  color: var(--lime-green);
+  outline: none;
+  text-align: center;
+  letter-spacing: 0.1em;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.glyph-input-bar:focus {
+  border-color: var(--lime-green);
+  box-shadow: 0 0 20px rgba(163, 217, 0, 0.3);
+}
+
+/* Architecture Section */
+.architecture-section {
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(18, 33, 23, 0.1);
+}
+
+/* Visual wrapper for Architecture breathing space */
+.architecture-content {
+  border: 2px solid rgba(163, 217, 0, 0.15);
+  border-radius: 40px;
+  padding: 4rem;
+  background: rgba(18, 33, 23, 0.4);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  max-width: 900px;
+}
+
+.architecture-content h2 {
+  font-family: var(--font-nav);
+  font-size: 2.75rem;
+  color: var(--lime-green);
+  margin-bottom: 1rem;
+}
+
+.architecture-content p {
+  font-size: 1.15rem;
+  color: var(--light-olive);
+  line-height: 1.7;
+}
+
+/* Footer Section (Full Width) */
+.footer-section {
+  min-height: auto;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
+.footer-graphic-container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: transparent;
+  margin-bottom: -170px; /* overlap with green block to prevent white line gaps */
+}
+
+.footer-graphic {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.footer-content {
+  background-color: var(--forest-green);
+  width: 100%;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  
+}
+
+.footer-brand {
+  font-family: var(--font-brand);
+  font-size: 3.5rem;
+  color: var(--lime-green);
+  letter-spacing: 0.05em;
+}
+
+.footer-links {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.footer-link {
+  font-family: var(--font-nav);
+  font-size: 1.25rem;
+  color: var(--light-olive);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: var(--lime-green);
+}
+
+.footer-copy {
+  font-size: 0.95rem;
+  color: rgba(203, 214, 181, 0.5);
+  margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 968px) {
+  .header-nav {
+    padding: 0 2rem;
+  }
+  
+  .logo-container {
+    width: 200px;
+  }
+
+  .nav-links {
+    gap: 1.25rem;
+  }
+
+  .nav-link {
+    font-size: 1.2rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .glyph-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .glyph-input-wrapper {
+    grid-column: span 1;
+  }
+
+  .try-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .try-input {
+    width: 100%;
+  }
+
+  .try-buttons {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-nav {
+    padding: 0 1rem;
+  }
+
+  .nav-links {
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .logo-container {
+    width: 120px;
+  }
+
+  .logo-header-img, .logo-symbol-img {
+    height: 36px;
+  }
+
+  .hex-key {
+    width: 40px;
+    height: 46px;
+    font-size: 1.1rem;
+    margin: 0 2px;
+  }
+
+  .hex-row {
+    margin-bottom: -12px;
+  }
+
+  .hex-row.staggered {
+    transform: translateX(22px);
+  }
+
+  .try-container {
+    height: 250px;
+  }
+
+  .try-output-text {
+    font-size: 3rem;
+  }
+
+  .try-label {
+    font-size: 1.3rem;
+  }
+}
