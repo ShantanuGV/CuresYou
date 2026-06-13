@@ -1,0 +1,7 @@
+{
+  "title": "CuresYou",
+  "description": "A healthcare-focused platform designed to help users access medical information, healthcare services, and digital health solutions through an intuitive and user-friendly interface.",
+  "tech": ["React", "JavaScript", "HTML", "CSS"],
+  "external": "https://github.com/ShantanuGV/CuresYou",
+  "featured": true
+}
