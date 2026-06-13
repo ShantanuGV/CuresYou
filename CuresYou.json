@@ -1,7 +1,7 @@
 {
   "title": "CuresYou",
-  "description": "A healthcare-focused platform designed to help users access medical information, healthcare services, and digital health solutions through an intuitive and user-friendly interface.",
-  "tech": ["React", "JavaScript", "HTML", "CSS"],
+  "description": "An art platform that transforms a user's name into unique large-scale typography inspired by real-world geographic features and satellite imagery, creating personalized visual artworks from natural patterns.",
+  "tech": ["Python", "AI", "Computer Vision", "Image Processing"],
   "external": "https://github.com/ShantanuGV/CuresYou",
   "featured": true
 }
