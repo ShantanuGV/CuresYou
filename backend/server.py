@@ -17,7 +17,16 @@ from river_engine.pipeline import RiverWordPipeline
 app = Flask(__name__)
 
 # Enable CORS for frontend access
-CORS(app)
+CORS(
+    app,
+    resources={
+        r"/api/*": {
+            "origins": [
+                "https://curesyou.vercel.app"
+            ]
+        }
+    }
+)
 
 
 @app.route("/", methods=["GET"])
