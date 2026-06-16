@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 from flask import Flask, request, send_file, jsonify
@@ -51,6 +52,10 @@ def generate():
     except Exception as exc:
         return jsonify({"error": f"Internal server error: {str(exc)}"}), 500
 
+
+
 if __name__ == "__main__":
-    # Run the server on port 5000
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000))
+    )
