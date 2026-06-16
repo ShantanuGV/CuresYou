@@ -165,7 +165,7 @@ function App() {
       setIsLoading(true);
       setApiError(null);
 
-      fetch('http://127.0.0.1:5000/api/generate', {
+      fetch(`${import.meta.env.VITE_API_URL}/api/generate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
