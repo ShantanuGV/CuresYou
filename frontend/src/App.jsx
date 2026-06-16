@@ -645,7 +645,7 @@ function App() {
       {/* Header / Sticky Navigation */}
       <nav ref={navRef} className={`header-nav ${isScrolled ? 'scrolled' : ''}`} id="main-nav">
         <div className="logo-container" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <img src="assets/curseyou_logo.png" alt="C" className="logo-symbol-img" />
+          <img src="./assets/curseyou_logo.png" alt="C" className="logo-symbol-img" />
         </div>
 
         <ul className="nav-links">
@@ -673,12 +673,12 @@ function App() {
 
       {/* Header Strip below Nav links at the top (disappears on scroll) */}
       <div className={`header-strip-container ${isScrolled ? 'scrolled-away' : ''}`}>
-        <img src="assets/curseyou_header.png" alt="Curse You" className="header-strip-img" />
+        <img src="./assets/curseyou_header.png" alt="Curse You" className="header-strip-img" />
       </div>
 
       {/* 2. Hero Section */}
       <section className="section hero-section" id="hero">
-        <img src="assets/curseyou_hero.png" alt="Curse You" className="hero-collage" />
+        <img src="./assets/curseyou_hero.png" alt="Curse You" className="hero-collage" />
       </section>
 
       {/* 3. ABOUT Section (Redesigned split card flow) */}
