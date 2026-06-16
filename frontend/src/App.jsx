@@ -744,7 +744,7 @@ function App() {
                 borderTop: '5px solid var(--lime-green)',
                 animation: 'spin 1s linear infinite'
               }}></div>
-              <div style={{ fontFamily: 'var(--font-nav)', color: 'var(--lime-green)', fontSize: '1.5rem', letterSpacing: '0.05em' }}>GENERATING RIVER...</div>
+              <div style={{ fontFamily: 'var(--font-nav)', color: 'var(--lime-green)', fontSize: '1.5rem', letterSpacing: '0.05em' }}>GENERATING RIVER...Backend is on Render so it may take a while</div>
             </div>
           ) : apiError ? (
             <div style={{ fontFamily: 'var(--font-nav)', color: '#ff6b6b', fontSize: '1.5rem', textAlign: 'center', padding: '2rem' }}>
