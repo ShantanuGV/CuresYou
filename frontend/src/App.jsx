@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-
+import logo from "./assets/curseyou_logo.png";
+import header from "./assets/curseyou_header.png";
+import hero from "./assets/curseyou_hero.png";
+import footer from "./assets/thankyou_footer.png";
 // Wiggly, organic-styled vector paths for the letters A-Z (viewBox="0 0 400 500")
 const GLYPH_PATHS = {
   A: "M 200 60 L 90 400 M 200 60 L 310 400 M 130 290 L 270 290",
@@ -645,7 +648,7 @@ function App() {
       {/* Header / Sticky Navigation */}
       <nav ref={navRef} className={`header-nav ${isScrolled ? 'scrolled' : ''}`} id="main-nav">
         <div className="logo-container" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <img src="./assets/curseyou_logo.png" alt="C" className="logo-symbol-img" />
+          <img src={logo} alt="C" className="logo-symbol-img" />
         </div>
 
         <ul className="nav-links">
@@ -673,12 +676,12 @@ function App() {
 
       {/* Header Strip below Nav links at the top (disappears on scroll) */}
       <div className={`header-strip-container ${isScrolled ? 'scrolled-away' : ''}`}>
-        <img src="./assets/curseyou_header.png" alt="Curse You" className="header-strip-img" />
+        <img src={header} alt="Curse You" className="header-strip-img" />
       </div>
 
       {/* 2. Hero Section */}
       <section className="section hero-section" id="hero">
-        <img src="./assets/curseyou_hero.png" alt="Curse You" className="hero-collage" />
+        <img src={hero} alt="Curse You" className="hero-collage" />
       </section>
 
       {/* 3. ABOUT Section (Redesigned split card flow) */}
@@ -992,7 +995,7 @@ function App() {
       {/* 7. Footer Section */}
       <section className="section footer-section" id="footer">
         <div className="footer-graphic-container">
-          <img src="assets/thankyou_footer.png" alt="Thank You" className="footer-graphic" />
+          <img src={footer} alt="Thank You" className="footer-graphic" />
         </div>
         <div className="footer-content">
           <div className="footer-brand">Curse You</div>
