@@ -165,13 +165,15 @@ function App() {
       setIsLoading(true);
       setApiError(null);
 
-      fetch(`${import.meta.env.VITE_API_URL}/api/generate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ word: tryText }),
-      })
+      const API_URL = "https://curesyou.onrender.com";
+
+fetch(`${API_URL}/api/generate`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ word: tryText }),
+})
       .then((res) => {
         if (!res.ok) {
           return res.json().then((data) => {
