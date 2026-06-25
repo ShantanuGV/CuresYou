@@ -63,6 +63,7 @@ function App() {
   const [glyphText, setGlyphText] = useState('C');
   const [activeKey, setActiveKey] = useState('C');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navRef = useRef(null);
   const parallaxBgRef = useRef(null);
