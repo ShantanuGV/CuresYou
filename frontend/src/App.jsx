@@ -287,352 +287,7 @@ function App() {
         We inject styles here to maintain the locked src/index.css unchanged,
         while updating background scaling, the about layout, and the step-by-step timeline.
       */}
-      <style>{`
-        /* Avoid cropping the background, let full height load and cover in width */
-        .parallax-bg {
-          background-size: 100% auto !important;
-          background-repeat: repeat-y !important;
-          background-position: top center !important;
-          height: 400vh !important;
-        }
-
-        /* ---------------------------------
-           Creative Redesigned ABOUT Section
-           --------------------------------- */
-        .about-grid {
-          display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: 3.5rem;
-          max-width: 1150px;
-          width: 100%;
-          margin: 0 auto;
-        }
-
-        .about-premium-card {
-          background: rgba(18, 33, 23, 0.65);
-          backdrop-filter: blur(25px);
-          border: 2px solid rgba(163, 217, 0, 0.25);
-          border-radius: 40px;
-          padding: 3.5rem;
-          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-          position: relative;
-          text-align: left;
-        }
-
-        .about-premium-card::before {
-          content: '“';
-          position: absolute;
-          top: -20px;
-          left: 30px;
-          font-size: 8rem;
-          color: rgba(163, 217, 0, 0.15);
-          font-family: var(--font-brand);
-          line-height: 1;
-        }
-
-        .about-headline {
-          font-family: var(--font-nav);
-          font-size: 2.8rem;
-          color: var(--lime-green);
-          margin-bottom: 1.5rem;
-          letter-spacing: 0.05em;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .about-desc {
-          font-size: 1.25rem;
-          line-height: 1.8;
-          color: var(--light-olive);
-        }
-
-        .about-right-flow {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-          justify-content: center;
-        }
-
-        .about-node-box {
-          background: rgba(34, 65, 44, 0.4);
-          border: 1px solid rgba(163, 217, 0, 0.18);
-          border-radius: 24px;
-          padding: 1.5rem;
-          display: flex;
-          align-items: center;
-          gap: 1.5rem;
-          transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-          text-align: left;
-        }
-
-        .about-node-box:hover {
-          transform: translateX(12px) scale(1.02);
-          border-color: var(--lime-green);
-          background: rgba(34, 65, 44, 0.6);
-          box-shadow: 0 10px 25px rgba(163, 217, 0, 0.15);
-        }
-
-        .about-node-circle {
-          width: 55px;
-          height: 55px;
-          border-radius: 50%;
-          background: var(--lime-green);
-          color: var(--forest-green);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: var(--font-nav);
-          font-size: 1.4rem;
-          font-weight: bold;
-          flex-shrink: 0;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .about-node-text h4 {
-          font-family: var(--font-nav);
-          font-size: 1.2rem;
-          color: var(--text-white);
-          margin-bottom: 0.25rem;
-        }
-
-        .about-node-text p {
-          font-size: 0.95rem;
-          color: var(--light-olive);
-          line-height: 1.4;
-        }
-
-        /* ---------------------------------
-           Creative Step-by-Step Architecture
-           --------------------------------- */
-        .timeline-container {
-          position: relative;
-          max-width: 1050px;
-          width: 100%;
-          margin: 3rem auto 0 auto;
-          padding: 1rem 0;
-        }
-
-        .timeline-bar {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 50%;
-          width: 4px;
-          background: repeating-linear-gradient(
-            to bottom,
-            transparent,
-            transparent 8px,
-            rgba(163, 217, 0, 0.4) 8px,
-            rgba(163, 217, 0, 0.4) 16px
-          );
-          transform: translateX(-50%);
-        }
-
-        .timeline-item {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          width: 100%;
-          margin-bottom: 4rem;
-          position: relative;
-        }
-
-        .timeline-item:nth-child(even) {
-          flex-direction: row-reverse;
-        }
-
-        .timeline-dot {
-          position: absolute;
-          left: 50%;
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          background: var(--lime-green);
-          border: 6px solid var(--bg-dark);
-          transform: translateX(-50%);
-          z-index: 10;
-          box-shadow: 0 0 15px var(--lime-green);
-        }
-
-        .timeline-card {
-          width: 46%;
-          background: rgba(18, 33, 23, 0.75);
-          backdrop-filter: blur(15px);
-          border: 2px solid rgba(163, 217, 0, 0.2);
-          border-radius: 30px;
-          padding: 2.2rem;
-          box-shadow: 0 20px 45px rgba(0,0,0,0.5);
-          text-align: left;
-          transition: all 0.3s ease;
-        }
-
-        .timeline-card:hover {
-          border-color: var(--lime-green);
-          box-shadow: 0 25px 50px rgba(163,217,0,0.1);
-        }
-
-        .timeline-card h3 {
-          font-family: var(--font-nav);
-          font-size: 1.45rem;
-          color: var(--lime-green);
-          margin-bottom: 0.8rem;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-        }
-
-        .timeline-card p {
-          font-size: 1.05rem;
-          line-height: 1.6;
-          color: var(--light-olive);
-        }
-
-        /* Image placeholder box */
-        .timeline-media-box {
-          width: 46%;
-          aspect-ratio: 1.6 / 1;
-          background: rgba(34, 65, 44, 0.15);
-          border: 3px dashed rgba(163, 217, 0, 0.25);
-          border-radius: 30px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          color: rgba(163, 217, 0, 0.45);
-          transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
-          cursor: pointer;
-        }
-
-        .timeline-media-box:hover {
-          border-color: var(--lime-green);
-          color: var(--lime-green);
-          background: rgba(34, 65, 44, 0.3);
-          box-shadow: 0 15px 30px rgba(163, 217, 0, 0.1);
-        }
-
-        .media-icon {
-          font-size: 2.5rem;
-          margin-bottom: 0.5rem;
-        }
-
-        .media-label {
-          font-family: var(--font-nav);
-          font-size: 0.95rem;
-          letter-spacing: 0.05em;
-        }
-
-        /* ---------------------------------
-           Footer Layout refinements
-           --------------------------------- */
-        .footer-split-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 4.5rem;
-          width: 100%;
-          max-width: 1100px;
-          margin-bottom: 2.5rem;
-          text-align: left;
-        }
-
-        .footer-col-left {
-          border-right: 1px solid rgba(163, 217, 0, 0.15);
-          padding-right: 3rem;
-        }
-
-        .footer-heading {
-          font-family: var(--font-nav);
-          font-size: 1.3rem;
-          color: var(--lime-green);
-          margin-bottom: 1rem;
-          letter-spacing: 0.05em;
-          text-transform: uppercase;
-        }
-
-        .footer-desc {
-          color: var(--light-olive);
-          font-size: 1.05rem;
-          line-height: 1.7;
-        }
-
-        .footer-github-link {
-          display: inline-flex;
-          align-items: center;
-          margin-top: 1.2rem;
-          background: rgba(163, 217, 0, 0.1);
-          border: 1px solid rgba(163, 217, 0, 0.3);
-          padding: 0.5rem 1.2rem;
-          border-radius: 20px;
-          color: var(--lime-green);
-          text-decoration: none;
-          font-family: var(--font-nav);
-          font-size: 0.95rem;
-          transition: all 0.3s ease;
-        }
-
-        .footer-github-link:hover {
-          background: var(--lime-green);
-          color: var(--forest-green);
-          border-color: var(--lime-green);
-          transform: translateY(-2px);
-        }
-
-        .inspiration-list {
-          list-style: none;
-          padding: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 0.8rem;
-        }
-
-        .inspiration-item a {
-          color: var(--light-olive);
-          text-decoration: none;
-          font-size: 1.05rem;
-          transition: color 0.3s ease;
-          display: inline-block;
-          border-bottom: 1px dashed rgba(203, 214, 181, 0.3);
-          padding-bottom: 2px;
-        }
-
-        .inspiration-item a:hover {
-          color: var(--lime-green);
-          border-bottom-color: var(--lime-green);
-        }
-
-        @media (max-width: 968px) {
-          .about-grid {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-          }
-          .timeline-bar {
-            left: 20px;
-          }
-          .timeline-item {
-            flex-direction: column !important;
-            align-items: flex-start;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-          }
-          .timeline-card, .timeline-media-box {
-            width: 100%;
-            margin-left: 40px;
-          }
-          .timeline-dot {
-            left: 20px;
-          }
-          .footer-split-grid {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-          }
-          .footer-col-left {
-            border-right: none;
-            padding-right: 0;
-            border-bottom: 1px solid rgba(163, 217, 0, 0.15);
-            padding-bottom: 2.5rem;
-          }
-        }
-      `}</style>
+      
 
       {/* SVG filter definitions for organic wiggle effect */}
       <svg style={{ position: 'absolute', width: 0, height: 0 }}>
@@ -648,12 +303,21 @@ function App() {
       <div ref={parallaxBgRef} className="parallax-bg" />
 
       {/* Header / Sticky Navigation */}
-      <nav ref={navRef} className={`header-nav ${isScrolled ? 'scrolled' : ''}`} id="main-nav">
+      <nav ref={navRef} className={`header-nav ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'mobile-nav-open' : ''}`} id="main-nav">
         <div className="logo-container" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <img src={logo} alt="C" className="logo-symbol-img" />
+          <span className="mobile-nav-title">CURSEYOU - CURVY GEO-SCRIPT</span>
         </div>
 
-        <ul className="nav-links">
+        <button 
+          className="menu-toggle" 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle Menu"
+        >
+          ☰
+        </button>
+
+        <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
           {['ABOUT', 'TRY', 'GLYPH', 'ARCHITECTURE'].map((item) => {
             const id = item.toLowerCase();
             const isActive = activeSection === id;
@@ -663,6 +327,7 @@ function App() {
                   href={`#${id}`}
                   onClick={(e) => {
                     e.preventDefault();
+                    setIsMobileMenuOpen(false);
                     scrollToSection(id);
                   }}
                   className={`nav-link ${isActive ? 'active' : ''}`}
@@ -684,6 +349,7 @@ function App() {
       {/* 2. Hero Section */}
       <section className="section hero-section" id="hero">
         <img src={hero} alt="Curse You" className="hero-collage" />
+        <button className="hero-try-btn" onClick={() => scrollToSection('try')}>TRY THE DEMO</button>
       </section>
 
       {/* 3. ABOUT Section (Redesigned split card flow) */}
