@@ -582,10 +582,10 @@ function App() {
         </div>
       </section>
 
-      {/* 6. ARCHITECTURE Section (Redesigned Step-by-Step Vertical Timeline) */}
+      {/* 6. ARCHITECTURE Section (Redesigned 6-Step Technical Vertical Timeline) */}
       <section className="section architecture-section" id="architecture">
         <h2 style={{ fontFamily: 'var(--font-nav)', fontSize: '3rem', color: 'var(--lime-green)', letterSpacing: '0.05em', marginBottom: '1rem' }}>ARCHITECTURE</h2>
-        <p style={{ maxWidth: '800px', color: 'var(--light-olive)', fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '2rem' }}>
+        <p style={{ maxWidth: '850px', color: 'var(--light-olive)', fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '2.5rem' }}>
           CurseYou relies on an automated layout and stitching pipeline running in our Python backend. 
           By connecting satellite imagery vectors with graph optimization algorithms, we compose smooth river lines.
         </p>
@@ -597,11 +597,13 @@ function App() {
           <div className="timeline-item">
             <div className="timeline-dot"></div>
             <div className="timeline-card">
-              <h3><span>01</span> Satellite Extraction</h3>
+              <h3><span>01</span> Feature Vector Mapping</h3>
               <p>
-                We crop and prepare high-resolution river meanders directly from Google Earth and NASA Landsat imagery. 
-                Each letter is assigned a specific geographic river coordinate dataset containing entry and exit angles.
+                We extract high-resolution centerline splines from Google Earth and NASA Landsat imagery. 
+                Each river curve is cataloged as a parametric function:
               </p>
+              <span className="math-expr">S(t) = &Sigma; B_i(t) &middot; P_i</span>
+              <p>mapping raw geographic water paths to discrete vector graphics.</p>
             </div>
             <div className="timeline-media-box">
               <span className="media-icon">📷</span>
@@ -613,16 +615,16 @@ function App() {
           <div className="timeline-item">
             <div className="timeline-dot"></div>
             <div className="timeline-card">
-              <h3><span>02</span> Graph Search Optimization</h3>
+              <h3><span>02</span> Spline Signature Indexing</h3>
               <p>
-                Our search optimizer evaluates potential river candidates for consecutive letter pairs. 
-                It calculates a junction score, evaluating how closely the flow angles and water-widths match 
-                to align the flow path seamlessly.
+                Each river letter segment is indexed in our database. We measure entrance/exit flow angles 
+                (&theta;<sub>in</sub>, &theta;<sub>out</sub>) and channel widths (W<sub>in</sub>, W<sub>out</sub>) 
+                to guarantee seamless physical properties between adjoining meander nodes.
               </p>
             </div>
             <div className="timeline-media-box">
-              <span className="media-icon">📈</span>
-              <span className="media-label">[ Graph Path Node Mesh ]</span>
+              <span className="media-icon">🏷️</span>
+              <span className="media-label">[ Letter Signature Index ]</span>
             </div>
           </div>
 
@@ -630,15 +632,17 @@ function App() {
           <div className="timeline-item">
             <div className="timeline-dot"></div>
             <div className="timeline-card">
-              <h3><span>03</span> Channel Stitching</h3>
+              <h3><span>03</span> Beam Search Optimization</h3>
               <p>
-                The layout engine places the stitched sequence. It translates, rotates, and overlaps the river blocks. 
-                Joints are smoothed with custom blending coordinates and bridges are solved using curve interpolation.
+                A search algorithm matches adjoining letter candidates. It evaluates combinations by 
+                minimizing a boundary cost mismatch function:
               </p>
+              <span className="math-expr">E_joint = w_&theta;(&Delta;&theta;)^2 + w_w(&Delta;W)^2</span>
+              <p>ensuring natural continuation without bottlenecks or unrealistic bends.</p>
             </div>
             <div className="timeline-media-box">
-              <span className="media-icon">🔗</span>
-              <span className="media-label">[ Stitched River Channel Layout ]</span>
+              <span className="media-icon">📈</span>
+              <span className="media-label">[ Graph Path Node Mesh ]</span>
             </div>
           </div>
 
@@ -646,15 +650,50 @@ function App() {
           <div className="timeline-item">
             <div className="timeline-dot"></div>
             <div className="timeline-card">
-              <h3><span>04</span> Matte Blend Rendering</h3>
+              <h3><span>04</span> Rigid Body Alignment</h3>
               <p>
-                The final pipeline renders the composited coordinates over a lush green forest backdrop. 
-                Using custom alpha masks and blending, the stitched channels become a cohesive high-resolution satellite river scene.
+                To stitch the sequence, individual segments are translated and rotated into place. 
+                The layout engine computes a 2D affine transformation:
               </p>
+              <span className="math-expr">P_new = R(&Delta;&theta;) &middot; P + T</span>
+              <p>mapping the exit node of letter k to the entrance node of k+1.</p>
+            </div>
+            <div className="timeline-media-box">
+              <span className="media-icon">🔗</span>
+              <span className="media-label">[ Stitched River Channel Layout ]</span>
+            </div>
+          </div>
+
+          {/* Step 5 */}
+          <div className="timeline-item">
+            <div className="timeline-dot"></div>
+            <div className="timeline-card">
+              <h3><span>05</span> Junction Alpha Blending</h3>
+              <p>
+                Overlap zones are resolved using dynamic feathering masks and linear transparency blending:
+              </p>
+              <span className="math-expr">C_blend = &alpha; &middot; C_A + (1 - &alpha;) &middot; C_B</span>
+              <p>This merges satellite banks, preventing sudden seams or color shifts at joint lines.</p>
             </div>
             <div className="timeline-media-box">
               <span className="media-icon">🎨</span>
               <span className="media-label">[ Final Composite Mask Render ]</span>
+            </div>
+          </div>
+
+          {/* Step 6 */}
+          <div className="timeline-item">
+            <div className="timeline-dot"></div>
+            <div className="timeline-card">
+              <h3><span>06</span> Matte Composition</h3>
+              <p>
+                The finalized river ribbon is composited over forest textures. Post-processing steps 
+                apply local color adjustments and super-resolution upscaling to export a printable image.
+              </p>
+            </div>
+            <div className="timeline-media-box">
+              <span className="media-icon">🖥️</span>
+              <span className="media-label">[ Final Output Image ]</span>
             </div>
           </div>
 
@@ -664,10 +703,10 @@ function App() {
       {/* 7. Footer Section */}
       <section className="section footer-section" id="footer">
         <div className="footer-graphic-container">
-          <img src={footer} alt="Thank You" className="footer-graphic" />
+          <img src={footer} alt="Thank You" className="footer-graphic footer-graphic-container-img" />
         </div>
         <div className="footer-content">
-          <div className="footer-brand">Curse You</div>
+          <div className="footer-brand">curse you</div>
           
           <div className="footer-split-grid">
             {/* Left Column: Work in progress */}
@@ -723,4 +762,5 @@ function App() {
   );
 }
 
+export default App;
 export default App;
