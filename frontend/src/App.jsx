@@ -585,11 +585,13 @@ function App() {
 
       {/* 6. ARCHITECTURE Section (Redesigned 6-Step Technical Vertical Timeline) */}
       <section className="section architecture-section" id="architecture">
-        <h2 style={{ fontFamily: 'var(--font-nav)', fontSize: '3rem', color: 'var(--lime-green)', letterSpacing: '0.05em', marginBottom: '1rem' }}>ARCHITECTURE</h2>
+        <div className="about-premium-card" id="architecture_card">
+        <h2 style={{ fontFamily: 'var(--font-nav)', fontSize: '2.5rem', color: 'var(--lime-green)', letterSpacing: '0.05em', marginBottom: '1rem' }}>ARCHITECTURE</h2>
         <p style={{ maxWidth: '850px', color: 'var(--light-olive)', fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '2.5rem' }}>
           CurseYou relies on an automated layout and stitching pipeline running in our Python backend. 
           By connecting satellite imagery vectors with graph optimization algorithms, we compose smooth river lines.
         </p>
+        </div>
 
         <div className="timeline-container">
           <div className="timeline-bar"></div>
