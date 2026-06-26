@@ -32,14 +32,18 @@ Unlike conventional typography systems where every glyph has a fixed position, C
 
 # Repository Navigation
 
-CurseYou/
+# Repository Structure
 
+```text
+CurseYou/
+│
 ├── README.md
 ├── LICENSE
 ├── CONTRIBUTING.md
 ├── CHANGELOG.md
 ├── SECURITY.md
 ├── ROADMAP.md
+├── CITATION.cff
 │
 ├── docs/
 │   ├── PROJECT_OVERVIEW.md
@@ -54,7 +58,13 @@ CurseYou/
 │   └── FAQ.md
 │
 ├── backend/
+│   ├── main.py
+│   ├── server.py
+│   ├── requirements.txt
+│   ├── output.png
+│   │
 │   ├── river_engine/
+│   │   ├── __init__.py
 │   │   ├── blending.py
 │   │   ├── bridge.py
 │   │   ├── config.py
@@ -68,21 +78,18 @@ CurseYou/
 │   │   ├── renderer.py
 │   │   ├── ribbon.py
 │   │   ├── stitcher.py
-│   │   ├── types.py
-│   │   └── **init**.py
-│   ├── main.py
-│   ├── output.png
-│   ├── requirements.txt
-│   └── server.py
+│   │   └── types.py
+│   │
 │   ├── tests/
 │   └── assets/
 │
 ├── frontend/
-│   ├── src/
+│   ├── package.json
 │   ├── public/
-│   └── package.json
+│   └── src/
 │
 └── assets/
+```
 
 ---
 
