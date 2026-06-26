@@ -348,13 +348,13 @@ Continuous River Typography
 Additional examples:
 
 ```text
-RAKESH
+SHANTANU
         ↓
 Procedurally Generated River Typography
 ```
 
 ```text
-OPENAI
+GOOGLE
         ↓
 Procedurally Generated River Typography
 ```
