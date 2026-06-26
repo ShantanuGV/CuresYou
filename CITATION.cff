@@ -1,0 +1,47 @@
+cff-version: 1.2.0
+
+title: "CurseYou: A Procedural River Typography Engine"
+
+message: >
+If you use CurseYou in your research, project, publication,
+or educational work, please cite this repository.
+
+type: software
+
+authors:
+
+* family-names: "Vispute"
+  given-names: "Shantanu"
+
+repository-code: "https://github.com/ShantanuGV/CuresYou"
+
+abstract: >
+CurseYou is a procedural graphics engine that generates
+readable typography from real river geometries. The system
+uses metadata indexing, Beam Search optimization,
+computational geometry, affine transformations, Bézier
+bridge generation, and raster compositing to synthesize
+continuous river words without relying on traditional fonts.
+
+keywords:
+
+* typography
+* computational geometry
+* beam search
+* procedural generation
+* computer graphics
+* image processing
+* optimization
+* river
+* rendering
+* raster graphics
+
+license: MIT
+
+version: 1.0.0
+
+date-released: 2026-06-26
+
+language: en
+
+url: "https://curesyou.vercel.app/"
