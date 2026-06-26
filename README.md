@@ -11,7 +11,6 @@ Transforming real river geometry into procedurally generated typography using co
 <p align="center">
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-Backend-000000?logo=flask)
 ![React](https://img.shields.io/badge/React-Frontend-61DAFB?logo=react)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Status-Active-success)
