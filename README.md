@@ -12,12 +12,11 @@
 
 <p align="center">
 
-![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
-![Backend](https://img.shields.io/badge/Backend-Python-success)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Status](https://img.shields.io/badge/Status-Active-orange)
-![Architecture](https://img.shields.io/badge/Architecture-Modular-red)
-![Documentation](https://img.shields.io/badge/Documentation-Complete-blueviolet)
+
+
+
+
+\
 
 </p>
 
@@ -33,7 +32,6 @@ Unlike conventional typography systems where every glyph has a fixed position, C
 
 # Repository Navigation
 
-```
 CurseYou/
 
 ├── README.md
@@ -56,11 +54,35 @@ CurseYou/
 │   └── FAQ.md
 │
 ├── backend/
+│   ├── river_engine/
+│   │   ├── blending.py
+│   │   ├── bridge.py
+│   │   ├── config.py
+│   │   ├── debug.py
+│   │   ├── geometry.py
+│   │   ├── layout.py
+│   │   ├── metadata_loader.py
+│   │   ├── normalizer.py
+│   │   ├── optimizer.py
+│   │   ├── pipeline.py
+│   │   ├── renderer.py
+│   │   ├── ribbon.py
+│   │   ├── stitcher.py
+│   │   ├── types.py
+│   │   └── **init**.py
+│   ├── main.py
+│   ├── output.png
+│   ├── requirements.txt
+│   └── server.py
+│   ├── tests/
+│   └── assets/
 │
 ├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
 │
 └── assets/
-```
 
 ---
 
