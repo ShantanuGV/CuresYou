@@ -924,3 +924,12 @@ Made with ❤️ using Python, React, Computational Geometry, and Procedural Gra
 **Continue Reading →**
 
 The following documentation explores every subsystem in detail, from metadata indexing and Beam Search optimization to Bézier bridge generation, affine transformations, alpha compositing, and rendering internals.
+
+## Keywords
+
+Procedural Typography, River Typography, Computational Geometry,
+Beam Search, Procedural Graphics, Image Stitching,
+Image Processing, Raster Compositing, GIS,
+Satellite Imagery, Generative Typography,
+Creative Coding, Algorithmic Design,
+Python, React.
