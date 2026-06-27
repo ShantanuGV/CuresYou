@@ -24,7 +24,7 @@ Transforming real river geometry into procedurally generated typography using co
 
 **Website**
 
-https://curesyou.vercel.app/
+https://curseyou.vercel.app/
 
 ---
 
