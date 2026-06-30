@@ -476,112 +476,133 @@ function App() {
       </section>
 
       {/* 5. GLYPH Section */}
-      <section className="section glyph-section" id="glyph">
-        <div className="glyph-layout">
-          
-          {/* Left: Interactive Vector Display Area */}
-          <div className="glyph-display-area">
-            <div className="glyph-guide-lines">
-              <div className="guide-line"></div>
-              <div className="guide-line"></div>
-              <div className="guide-line"></div>
-            </div>
+<section className="section glyph-section" id="glyph">
+  <div className="glyph-layout">
 
-            <svg viewBox="0 0 400 500" className="glyph-svg-canvas">
-              {activeKey && GLYPH_PATHS[activeKey] && (
-                <path
-                  key={activeKey}
-                  d={GLYPH_PATHS[activeKey]}
-                  className="glyph-river-path"
-                />
-              )}
-            </svg>
-          </div>
+    {/* Left: Interactive Glyph Display Area */}
+    <div className="glyph-display-area">
+      <div className="glyph-guide-lines">
+        <div className="guide-line"></div>
+        <div className="guide-line"></div>
+        <div className="guide-line"></div>
+      </div>
 
-          {/* Right: Custom Hexagonal Keyboard */}
-          <div className="glyph-keyboard-container">
-            {KEYBOARD_ROWS.map((row, rIdx) => (
-              <div key={rIdx} className={`hex-row ${row.staggered ? 'staggered' : ''}`}>
-                {row.keys.map((key) => {
-                  const isActive = activeKey === key;
-                  return (
-                    <div
-                      key={key}
-                      onClick={() => handleHexKeyClick(key)}
-                      className={`hex-key ${isActive ? 'active' : ''}`}
-                    >
-                      <span className="hex-key-label">{key}</span>
-                    </div>
-                  );
-                })}
+      <img
+        src={
+          activeKey
+            ? new URL(
+                `../../assets/glyph_letters/${activeKey.toLowerCase()}.png`,
+                import.meta.url
+              ).href
+            : ""
+        }
+        alt={activeKey || "Glyph"}
+        className="glyph-svg-canvas"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+        }}
+      />
+    </div>
+
+    {/* Right: Custom Hexagonal Keyboard */}
+    <div className="glyph-keyboard-container">
+      {KEYBOARD_ROWS.map((row, rIdx) => (
+        <div
+          key={rIdx}
+          className={`hex-row ${row.staggered ? "staggered" : ""}`}
+        >
+          {row.keys.map((key) => {
+            const isActive = activeKey === key;
+            return (
+              <div
+                key={key}
+                onClick={() => handleHexKeyClick(key)}
+                className={`hex-key ${isActive ? "active" : ""}`}
+              >
+                <span className="hex-key-label">{key}</span>
               </div>
-            ))}
-          </div>
-
-          {/* Bottom center: Download controls (replacing text input) */}
-          <div className="glyph-input-wrapper" style={{ display: 'flex', gap: '2rem', justifyContent: 'center', width: '100%', gridColumn: 'span 2' }}>
-            <button
-              onClick={handleDownloadTxt}
-              style={{
-                backgroundColor: 'var(--forest-green)',
-                border: '3px solid transparent',
-                borderRadius: '30px',
-                height: '60px',
-                padding: '0 2rem',
-                fontFamily: 'var(--font-nav)',
-                fontSize: '1.25rem',
-                color: 'var(--lime-green)',
-                cursor: 'pointer',
-                outline: 'none',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.4)',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = 'var(--lime-green)';
-                e.target.style.color = 'var(--forest-green)';
-                e.target.style.transform = 'scale(1.05)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = 'var(--forest-green)';
-                e.target.style.color = 'var(--lime-green)';
-                e.target.style.transform = 'scale(1)';
-              }}
-            >
-              Download Text (.txt)
-            </button>
-            <button
-              onClick={handleDownloadLetterImage}
-              style={{
-                backgroundColor: 'var(--forest-green)',
-                border: '3px solid transparent',
-                borderRadius: '30px',
-                height: '60px',
-                padding: '0 2rem',
-                fontFamily: 'var(--font-nav)',
-                fontSize: '1.25rem',
-                color: 'var(--lime-green)',
-                cursor: 'pointer',
-                outline: 'none',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.4)',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.backgroundColor = 'var(--lime-green)';
-                e.target.style.color = 'var(--forest-green)';
-                e.target.style.transform = 'scale(1.05)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.backgroundColor = 'var(--forest-green)';
-                e.target.style.color = 'var(--lime-green)';
-                e.target.style.transform = 'scale(1)';
-              }}
-            >
-              Download Letter (.svg)
-            </button>
-          </div>
-
+            );
+          })}
         </div>
-      </section>
+      ))}
+    </div>
+
+    {/* Bottom center: Download controls */}
+    <div
+      className="glyph-input-wrapper"
+      style={{
+        display: "flex",
+        gap: "2rem",
+        justifyContent: "center",
+        width: "100%",
+        gridColumn: "span 2",
+      }}
+    >
+      <button
+        onClick={handleDownloadTxt}
+        style={{
+          backgroundColor: "var(--forest-green)",
+          border: "3px solid transparent",
+          borderRadius: "30px",
+          height: "60px",
+          padding: "0 2rem",
+          fontFamily: "var(--font-nav)",
+          fontSize: "1.25rem",
+          color: "var(--lime-green)",
+          cursor: "pointer",
+          outline: "none",
+          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.4)",
+          transition: "all 0.3s ease",
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.backgroundColor = "var(--lime-green)";
+          e.target.style.color = "var(--forest-green)";
+          e.target.style.transform = "scale(1.05)";
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.backgroundColor = "var(--forest-green)";
+          e.target.style.color = "var(--lime-green)";
+          e.target.style.transform = "scale(1)";
+        }}
+      >
+        Download Text (.txt)
+      </button>
+
+      <button
+        onClick={handleDownloadLetterImage}
+        style={{
+          backgroundColor: "var(--forest-green)",
+          border: "3px solid transparent",
+          borderRadius: "30px",
+          height: "60px",
+          padding: "0 2rem",
+          fontFamily: "var(--font-nav)",
+          fontSize: "1.25rem",
+          color: "var(--lime-green)",
+          cursor: "pointer",
+          outline: "none",
+          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.4)",
+          transition: "all 0.3s ease",
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.backgroundColor = "var(--lime-green)";
+          e.target.style.color = "var(--forest-green)";
+          e.target.style.transform = "scale(1.05)";
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.backgroundColor = "var(--forest-green)";
+          e.target.style.color = "var(--lime-green)";
+          e.target.style.transform = "scale(1)";
+        }}
+      >
+        Download Letter (.svg)
+      </button>
+    </div>
+
+  </div>
+</section>
 
       {/* 6. ARCHITECTURE Section (Redesigned 6-Step Technical Vertical Timeline) */}
       <section className="section architecture-section" id="architecture">
