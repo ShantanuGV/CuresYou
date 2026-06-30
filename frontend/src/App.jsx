@@ -491,7 +491,7 @@ function App() {
         src={
           activeKey
             ? new URL(
-                `../../assets/glyph_letters/${activeKey.toLowerCase()}.png`,
+                `./assets/glyph_letters/${activeKey.toLowerCase()}.png`,
                 import.meta.url
               ).href
             : ""
