@@ -22,7 +22,7 @@ CORS(
     resources={
         r"/api/*": {
             "origins": [
-                "https://curesyou.vercel.app"
+                "https://curseyou.vercel.app"
             ]
         }
     }
